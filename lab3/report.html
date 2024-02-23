@@ -1,0 +1,133 @@
+<h1 id="цель-работы">Цель работы</h1>
+<p>Изучить модели боевых действий Ланчестера. Применить их на практике для решения задания лабораторной работы.</p>
+<h1 id="задание">Задание</h1>
+<p>Между страной Х и страной У идет война. Численность состава войск исчисляется от начала войны, и являются временными функциями <span class="math inline"><em>x</em>(<em>t</em>)</span> и <span class="math inline"><em>y</em>(<em>t</em>)</span>. В начальный момент времени страна Х имеет армию численностью <span class="math inline">22022</span> человек, а в распоряжении страны У армия численностью в <span class="math inline">33033</span> человек. Для упрощения модели считаем, что коэффициенты <span class="math inline"><em>a</em></span>, <span class="math inline"><em>b</em></span>, <span class="math inline"><em>c</em></span>, <span class="math inline"><em>h</em></span> постоянны. Также считаем <span class="math inline"><em>P</em>(<em>t</em>)</span> и <span class="math inline"><em>Q</em>(<em>t</em>)</span> непрерывными функциями.</p>
+<p>Постройте графики изменения численности войск армии Х и армии У для следующих случаев:</p>
+<ol type="1">
+<li>Модель боевых действий между регулярными войсками:</li>
+</ol>
+<p><span class="math display">$$ {dx\over {dt}} = -0.36x(t)-0.48y(t)+sin(t+1)+1 $$</span> <span class="math display">$$ {dy\over {dt}} = -0.49x(t)-0.37y(t)+cos(t+2)+1.1 $$</span></p>
+<ol start="2" type="1">
+<li>Модель ведение боевых действий с участием регулярных войск и партизанских отрядов:</li>
+</ol>
+<p><span class="math display">$$ {dx\over {dt}} = -0.11x(t)-0.68y(t)+sin(5t) $$</span> <span class="math display">$$ {dy\over {dt}} = -0.6x(t)y(t)-0.15y(t)+cos(5t) + 1 $$</span></p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной работы</h1>
+<h2 id="математическая-модель">Математическая модель</h2>
+<h3 id="регулярная-армия-x-против-регулярной-армии-y">Регулярная армия X против регулярной армии Y</h3>
+<p>Рассмотрим первый случай. Численность регулярных войск определяется тремя факторами:</p>
+<ol type="1">
+<li>Cкорость уменьшения численности войск из-за причин, не связанных с боевыми действиями (болезни, травмы, дезертирство);</li>
+<li>Cкорость потерь, обусловленных боевыми действиями противоборствующих сторон (что связанно с качеством стратегии, уровнем вооружения, профессионализмом солдат и т.п.);</li>
+<li>Cкорость поступления подкрепления (задаётся некоторой функцией от времени).</li>
+</ol>
+<p>В этом случае модель боевых действий между регулярными войсками описывается следующим образом:</p>
+<p><span class="math display">$$ {dx\over {dt}} = -a(t)x(t)-b(t)y(t)+P(t) $$</span> <span class="math display">$$ {dy\over {dt}} = -c(t)x(t)-h(t)y(t)+Q(t) $$</span></p>
+<p>В первом пункте нами рассматривается как раз такая модель. Она является доработанной моделью Ланчестера, так его изначальная модель учитывала лишь члены <span class="math inline"><em>b</em>(<em>t</em>)<em>y</em>(<em>t</em>)</span> и <span class="math inline"><em>c</em>(<em>t</em>)<em>x</em>(<em>t</em>)</span>, то есть, на потери за промежуток времени влияли лишь численность армий и “эффективность оружия” (коэффициенты <span class="math inline"><em>b</em>(<em>t</em>)</span> и <span class="math inline"><em>c</em>(<em>t</em>)</span>).</p>
+<p><span class="math display">$$ {dx\over {dt}} = -ax(t)-by(t)+P(t) $$</span> <span class="math display">$$ {dy\over {dt}} = -cx(t)-hy(t)+Q(t) $$</span></p>
+<p>Именно эти уравнения [3] и будут решать наши программы для выполнения первой части задания. В конце мы получим график кривой в декартовых координатах, где по оси <span class="math inline"><em>o</em><em>x</em></span> будет отображаться численность армии государства X, по оси <span class="math inline"><em>o</em><em>y</em></span> будет отображаться соответствующая численность армии Y. По тому, с какой осью пересечётся график, можно определить исход войны. Если ось <span class="math inline"><em>o</em><em>x</em></span> будет пересечена в положительных значениях, победа будет на стороне армии государства X (так как при таком раскладе численность армии Y достигла нуля при положительном значении численности армии X). Аналогичная ситуация для оси <span class="math inline"><em>o</em><em>y</em></span> и победы армии государства Y.</p>
+<h3 id="регулярная-армия-x-против-партизанской-армии-y">Регулярная армия X против партизанской армии Y</h3>
+<p>Для второй части задания, то есть, для моделирования боевых действий между регулярной армией и партизанской армией, необходимо внести поправки в предыдущую модель. Считается, что темп потерь партизан, проводящих свои операции в разных местах на некоторой известной территории, пропорционален не только численности армейских соединений, но и численности самих партизан.</p>
+<p><span class="math display">$$ {dx\over {dt}} = -a(t)x(t)-b(t)y(t)+P(t) $$</span> <span class="math display">$$ {dy\over {dt}} = -c(t)x(t)y(t)-h(t)y(t)+Q(t) $$</span></p>
+<p>Коэффициенты <span class="math inline"><em>a</em></span>, <span class="math inline"><em>b</em></span>, <span class="math inline"><em>c</em></span> и <span class="math inline"><em>h</em></span> всё так же будут положительными десятичными числами:</p>
+<p><span class="math display">$$ {dx\over {dt}} = -ax(t)-by(t)+P(t) $$</span> <span class="math display">$$ {dy\over {dt}} = -cx(t)y(t)-hy(t)+Q(t) $$</span></p>
+<h1 id="код">Код</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Plots<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> DifferentialEquations<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> one(du<span class="op">,</span> u<span class="op">,</span> p<span class="op">,</span> t)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">1</span>] <span class="op">=</span> <span class="op">-</span> <span class="op">-</span><span class="fl">0.401</span><span class="op">*</span>u[<span class="fl">1</span>] <span class="op">-</span> <span class="fl">0.707</span><span class="op">*</span>u[<span class="fl">2</span>] <span class="op">+</span> sin(<span class="fl">8</span><span class="op">*</span>t)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">2</span>] <span class="op">=</span> <span class="op">-</span> <span class="fl">0.606</span><span class="op">*</span>u[<span class="fl">1</span>] <span class="op">-</span> <span class="fl">0.502</span><span class="op">*</span>u[<span class="fl">2</span>] <span class="op">+</span> cos(<span class="fl">6</span><span class="op">*</span>t)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> two(du<span class="op">,</span> u<span class="op">,</span> p<span class="op">,</span> t)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">1</span>] <span class="op">=</span> <span class="op">-</span> <span class="fl">0.343</span><span class="op">*</span>u[<span class="fl">1</span>] <span class="op">-</span> <span class="fl">0.895</span><span class="op">*</span>u[<span class="fl">2</span>] <span class="op">+</span> <span class="fl">2</span><span class="op">*</span>sin(<span class="fl">2</span><span class="op">*</span>t)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    du[<span class="fl">2</span>] <span class="op">=</span> <span class="op">-</span> <span class="fl">0.699</span><span class="op">*</span>u[<span class="fl">1</span>] <span class="op">-</span> <span class="fl">0.502</span><span class="op">*</span>u[<span class="fl">2</span>] <span class="op">+</span> <span class="fl">2</span><span class="op">*</span>cos(t)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> people <span class="op">=</span> <span class="dt">Float64</span>[<span class="fl">22022</span><span class="op">,</span> <span class="fl">33033</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> prom1 <span class="op">=</span> [<span class="fl">0.0</span><span class="op">,</span> <span class="fl">3.0</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> prom2 <span class="op">=</span> [<span class="fl">0.0</span><span class="op">,</span> <span class="fl">0.0007</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>prob1 <span class="op">=</span> ODEProblem(one<span class="op">,</span> people<span class="op">,</span> prom1)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>prob2 <span class="op">=</span> ODEProblem(two<span class="op">,</span> people<span class="op">,</span> prom2)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>sol1 <span class="op">=</span> solve(prob1<span class="op">,</span> dtmax<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>sol2 <span class="op">=</span> solve(prob2<span class="op">,</span> dtmax<span class="op">=</span><span class="fl">0.000001</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>A1 <span class="op">=</span> [u[<span class="fl">1</span>] <span class="kw">for</span> u <span class="kw">in</span> sol1.u]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>A2 <span class="op">=</span> [u[<span class="fl">2</span>] <span class="kw">for</span> u <span class="kw">in</span> sol1.u]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>T1 <span class="op">=</span> [t <span class="kw">for</span> t <span class="kw">in</span> sol1.t]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>A3 <span class="op">=</span> [u[<span class="fl">1</span>] <span class="kw">for</span> u <span class="kw">in</span> sol2.u]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>A4 <span class="op">=</span> [u[<span class="fl">2</span>] <span class="kw">for</span> u <span class="kw">in</span> sol2.u]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>T2 <span class="op">=</span> [t <span class="kw">for</span> t <span class="kw">in</span> sol2.t]</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt1 <span class="op">=</span> plot(dpi <span class="op">=</span> <span class="fl">300</span><span class="op">,</span> legend<span class="op">=</span> <span class="ex">true</span><span class="op">,</span> bg <span class="op">=:</span>white)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plot<span class="op">!</span>(plt1<span class="op">,</span> xlabel<span class="op">=</span><span class="st">&quot;Время&quot;</span><span class="op">,</span> ylabel<span class="op">=</span><span class="st">&quot;Численность&quot;</span><span class="op">,</span> title<span class="op">=</span><span class="st">&quot;Модель боевых действий - случай 1&quot;</span><span class="op">,</span> legend<span class="op">=:</span>outerbottom)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plot<span class="op">!</span>(plt1<span class="op">,</span> T1<span class="op">,</span> A1<span class="op">,</span> label<span class="op">=</span><span class="st">&quot;Численность армии X&quot;</span><span class="op">,</span> color <span class="op">=:</span>red)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plot<span class="op">!</span>(plt1<span class="op">,</span> T1<span class="op">,</span> A2<span class="op">,</span> label<span class="op">=</span><span class="st">&quot;Численность армии Y&quot;</span><span class="op">,</span> color <span class="op">=:</span>green)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>savefig(plt1<span class="op">,</span> <span class="st">&quot;lab03_1.png&quot;</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt2 <span class="op">=</span> plot(dpi <span class="op">=</span> <span class="fl">1200</span><span class="op">,</span> legend<span class="op">=</span> <span class="ex">true</span><span class="op">,</span> bg <span class="op">=:</span>white)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plot<span class="op">!</span>(plt2<span class="op">,</span> xlabel<span class="op">=</span><span class="st">&quot;Время&quot;</span><span class="op">,</span> ylabel<span class="op">=</span><span class="st">&quot;Численность&quot;</span><span class="op">,</span> title<span class="op">=</span><span class="st">&quot;Модель боевых действий - случай 2&quot;</span><span class="op">,</span> legend<span class="op">=:</span>outerbottom)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plot<span class="op">!</span>(plt2<span class="op">,</span> T2<span class="op">,</span> A3<span class="op">,</span> label<span class="op">=</span><span class="st">&quot;Численность армии X&quot;</span><span class="op">,</span> color <span class="op">=:</span>red)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plot<span class="op">!</span>(plt2<span class="op">,</span> T2<span class="op">,</span> A4<span class="op">,</span> label<span class="op">=</span><span class="st">&quot;Численность армии Y&quot;</span><span class="op">,</span> color <span class="op">=:</span>green)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>savefig(plt2<span class="op">,</span> <span class="st">&quot;lab03_2.png&quot;</span>)</span></code></pre></div>
+<h3 id="результаты-работы-кода-на-julia">Результаты работы кода на Julia</h3>
+<figure>
+<img src="image/lab03_1.png" id="fig:001" alt="“Полученный график Julia. Первый случай”" /><figcaption aria-hidden="true">“Полученный график Julia. Первый случай”</figcaption>
+</figure>
+<figure>
+<img src="image/lab03_2.png" id="fig:002" alt="“Полученный график Julia. Второй случай”" /><figcaption aria-hidden="true">“Полученный график Julia. Второй случай”</figcaption>
+</figure>
+<p>На рис. <span class="citation" data-cites="fig:001">@fig:001</span> и <span class="citation" data-cites="fig:002">@fig:002</span> изображены итоговые графики для обоих случаев.</p>
+<h2 id="openmodelica">OpenModelica</h2>
+<h3 id="программный-код-решения-на-openmodelica-2">Программный код решения на OpenModelica [2]</h3>
+<pre class="openmodelica"><code>model Lab03_01
+Real x;
+Real y;
+Real a = 0.401;
+Real b = 0.707;
+Real c = 0.606;
+Real d = 0.502;
+Real t = time;
+initial equation
+x = 22022;
+y = 33033;
+equation
+der(x) = -a*x - b*y + sin(8*t);
+der(y) = -c*x*y - d*y + cos(6*t);
+end Lab03_01;
+
+
+
+
+model Lab03_02
+Real x;
+Real y;
+Real a = 0.343;
+Real b = 0.895;
+Real c = 0.699;
+Real d = 0.433;
+Real t = time;
+initial equation
+x = 22022;
+y = 33033;
+equation
+der(x) = -a*x - b*y + 2*sin(2*t);
+der(y) = -c*x - d*y + 2*cos(t);
+end Lab03_02;
+</code></pre>
+<h3 id="результаты-работы-кода-на-openmodelica">Результаты работы кода на OpenModelica</h3>
+<p>На графиках на рис. <span class="citation" data-cites="fig:003">@fig:003</span> и <span class="citation" data-cites="fig:004">@fig:004</span>, построенных с помощью OpenModelica изображены графики, аналогичные графикам <span class="citation" data-cites="fig:001">@fig:001</span> и <span class="citation" data-cites="fig:002">@fig:002</span> соответственно.</p>
+<figure>
+<img src="image/03_022.png" id="fig:003" alt="“Полученный график OpenModelica. Первый случай”" /><figcaption aria-hidden="true">“Полученный график OpenModelica. Первый случай”</figcaption>
+</figure>
+<figure>
+<img src="image/03_01.png" id="fig:004" alt="“Полученный график OpenModelica. Второй случай”" /><figcaption aria-hidden="true">“Полученный график OpenModelica. Второй случай”</figcaption>
+</figure>
+<h1 id="анализ-полученных-результатов.-сравнение-языков.">Анализ полученных результатов. Сравнение языков.</h1>
+<p>Как видно из графиков, для первой модели, то есть двух регулярных армий, противостоящих друг другу, графики на Julia и OpenModelica идентичны (с поправкой на использование разных графических ресурсов, разный масштаб и т.д.).</p>
+<p>Аналогичная ситуация верна и для графиков противостояния регулярной армии армии партизанов, которые рассматривались во второй модели.</p>
+<h1 id="вывод">Вывод</h1>
+<p>По итогам лабораторной работы я построила по две модели на языках Julia и OpenModelica. В ходе проделанной работы можно сделать вывод, что OpenModelica лучше приспособлен для моделирование процессов, протекающих во времени. Построение моделей боевых действий на языке OpenModelica занимает гораздо меньше строк и времени, чем аналогичное построение на языке Julia.</p>
